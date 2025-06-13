@@ -1,0 +1,376 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Mobile Art Gallery</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #6a0dad;
+            --secondary: #ff6b6b;
+            --dark: #2d2d2d;
+            --light: #f9f9f9;
+            --accent: #ffd166;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e7f1 100%);
+            color: var(--dark);
+            line-height: 1.6;
+            padding: 15px;
+        }
+        
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, #8a2be2 100%);
+            color: white;
+            padding: 25px 20px;
+            text-align: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .logo i {
+            color: var(--accent);
+        }
+        
+        .tagline {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+        
+        /* Navigation */
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+        }
+        
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 30px 20px;
+            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9));
+        }
+        
+        .hero h1 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            color: var(--dark);
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(255, 107, 107, 0.4);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(255, 107, 107, 0.5);
+        }
+        
+        /* Gallery Section */
+        .section-title {
+            text-align: center;
+            margin: 30px 0 20px;
+            color: var(--primary);
+            position: relative;
+            padding: 0 15px;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 4px;
+            background: var(--secondary);
+            margin: 12px auto;
+            border-radius: 2px;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            padding: 0 15px 20px;
+        }
+        
+        .artwork {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 1px solid #eee;
+        }
+        
+        .artwork:hover {
+            transform: translateY(-5px);
+        }
+        
+        .artwork-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .artwork-info {
+            padding: 20px;
+        }
+        
+        .artwork-title {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+            color: var(--primary);
+        }
+        
+        .artwork-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 15px 0;
+        }
+        
+        .artwork-price {
+            font-weight: bold;
+            font-size: 1.4rem;
+            color: var(--secondary);
+        }
+        
+        .artwork-size {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .buy-button {
+            display: block;
+            width: 100%;
+            text-align: center;
+            background: var(--primary);
+            color: white;
+            padding: 12px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+        
+        .buy-button:hover {
+            background: #5a0aad;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-top: 20px;
+        }
+        
+        /* Responsive Adjustments */
+        @media (min-width: 768px) {
+            .container {
+                max-width: 90%;
+            }
+            
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-palette"></i>
+                <span>MY ART GALLERY</span>
+            </div>
+            <p class="tagline">Showcase & Sell Your Unique Creations Directly From Your Phone</p>
+            <div class="nav-links">
+                <a href="#gallery">Gallery</a>
+            </div>
+        </header>
+
+        <section class="hero">
+            <h1>Discover Original Artworks</h1>
+            <p>Explore a collection of unique paintings and bring beautiful art into your home. Each piece is created with passion and care.</p>
+            <a href="#gallery" class="cta-button">View Artworks</a>
+        </section>
+
+        <section id="gallery">
+            <h2 class="section-title">My Featured Artworks</h2>
+            <div class="gallery">
+                <div class="artwork">
+                    <img src="https://i.ibb.co/GvL2kM4K/image.png" alt="Expressive Portrait in Teal" class="artwork-img">
+                    <div class="artwork-info">
+                        <h3 class="artwork-title">Gaze in Teal</h3>
+                        <p>An abstract portrait with bold brushstrokes, focusing on the intense gaze against a calming teal background. Painted with oil on canvas.</p>
+                        <div class="artwork-details">
+                            <span class="artwork-price">$700</span> 
+                            <span class="artwork-size">30" x 40"</span> 
+                        </div>
+                        <a href="https://paypal.me/ramazishavadze/700" class="buy-button" target="_blank">Purchase Now</a>
+                    </div>
+                </div>
+                
+                <div class="artwork">
+                    <img src="https://i.ibb.co/ks8TQCRC/image.png" alt="Warm Tones Portrait" class="artwork-img">
+                    <div class="artwork-info">
+                        <h3 class="artwork-title">Echoes in Ochre</h3>
+                        <p>A striking portrait in warm ochre and brown tones, featuring loose brushwork that gives life to the subtle expressions. Painted with oil on canvas.</p>
+                        <div class="artwork-details">
+                            <span class="artwork-price">$650</span>
+                            <span class="artwork-size">30" x 40"</span> 
+                        </div>
+                        <a href="https://paypal.me/ramazishavadze/650" class="buy-button" target="_blank">Purchase Now</a>
+                    </div>
+                </div>
+                
+                <div class="artwork">
+                    <img src="https://i.ibb.co/hRqvzbsT/image.png" alt="Dynamic Pink Portrait" class="artwork-img">
+                    <div class="artwork-info">
+                        <h3 class="artwork-title">Pink Reverie</h3>
+                        <p>This piece explodes with dynamic pink and magenta strokes, capturing a moment of intense feeling. A bold statement artwork. Painted with oil on canvas.</p>
+                        <div class="artwork-details">
+                            <span class="artwork-price">$720</span>
+                            <span class="artwork-size">40" x 50"</span> 
+                        </div>
+                        <a href="https://paypal.me/ramazishavadze/720" class="buy-button" target="_blank">Purchase Now</a>
+                    </div>
+                </div>
+                
+                <div class="artwork">
+                    <img src="https://i.ibb.co/Pv2pgT1s/image.png" alt="Subtle Pink Portrait" class="artwork-img">
+                    <div class="artwork-info">
+                        <h3 class="artwork-title">Whispers in Rose</h3>
+                        <p>A softer interpretation in rose and crimson, where lighter brushstrokes reveal a contemplative gaze. Ideal for adding a touch of subtle drama. Painted with oil on canvas.</p>
+                        <div class="artwork-details">
+                            <span class="artwork-price">$680</span>
+                            <span class="artwork-size">40" x 50"</span> 
+                        </div>
+                        <a href="https://paypal.me/ramazishavadze/680" class="buy-button" target="_blank">Purchase Now</a>
+                    </div>
+                </div>
+                
+                </div>
+        </section>
+
+        <footer>
+            <div class="logo">
+                <i class="fas fa-palette"></i>
+                <span>MY ART GALLERY</span>
+            </div>
+            <p>Showcasing unique art, created with passion</p>
+            <div class="social-links">
+                <a href="" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href=""><i class="fab fa-facebook-f"></i></a>
+                <a href=""><i class="fab fa-pinterest-p"></i></a>
+                <a href=""><i class="fab fa-twitter"></i></a>
+            </div>
+            <p><a href="mailto:rmzshavadze@gmail.com" style="color: white; text-decoration: none;">rmzshavadze@gmail.com</a></p>
+            <p class="copyright">© 2023 Mshvane | All Rights Reserved</p>
+        </footer>
+    </div>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
